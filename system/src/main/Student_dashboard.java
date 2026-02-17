@@ -5,52 +5,48 @@
  */
 package main;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Joyce Ann
  */
 public class Student_dashboard extends javax.swing.JFrame {
-   
-    private String userEmail; 
+    
+   private String userEmail;
 
-
+    /**
+     * Creates new form Student_dashboard
+     */
     public Student_dashboard() {
         initComponents();
     }
+    Student_dashboard(String email) {
+   this.userEmail = email; 
+    initComponents();       
+    displayUserProfile();   
+    displayTransactions(); // Tawgon kini para load dayon ang data sa table
 
-    public Student_dashboard(String email) {
-        this.userEmail = email; 
-        initComponents();
-        displayUserProfile();
-        System.out.println("Student logged in: " + email);
+    // --- KINI NGA MGA LINYA ANG NAG-HIDE SA COMPONENTS ---
+    // Atong i-set og TRUE ang tanan para makita sila
     
-    }
-public void displayUserProfile() {
-        // I-select ang fullname, email, ug role base sa imong info.db
-        try (java.sql.Connection conn = config.config.connectDB(); 
-             java.sql.PreparedStatement pstmt = conn.prepareStatement("SELECT fullname, email, role FROM tbl_user WHERE email = ?")) {
-            
-            pstmt.setString(1, userEmail); 
-            java.sql.ResultSet rs = pstmt.executeQuery();
-            
-            if (rs.next()) {
-                // Pagkuha sa data gikan sa database
-                String name = rs.getString("fullname");
-                String email = rs.getString("email");
-                String role = rs.getString("role");
-                
-                // I-display sa imong mga labels base sa imong variables sa ubos
-                lblFullname.setText(name); 
-                lblEmail.setText(email);  // Mao ni ang variable name sa imong email label
-                lblRole.setText(role); // Mao ni ang variable name sa imong role label
-            }
-        } catch (java.sql.SQLException e) {
-            System.out.println("Error loading profile: " + e.getMessage());
-        }
-    
+    jLabel8.setVisible(true);      // Label Teacher
+    jTextField1.setVisible(true);  // Field Teacher
+    jLabel9.setVisible(true);      // Label Section
+    jTextField2.setVisible(true);  // Field Section
+    jComboBox1.setVisible(true);   // Grade Level
+    jLabel10.setVisible(true);     // Label Email
+    jTextField3.setVisible(true);  // Field Email
+    btnSubmit.setVisible(true);    // Submit Button
+    jScrollPane1.setVisible(true); // Table Area
 
-  
+    // I-set ang email sa textfield
+    jTextField3.setText(userEmail);
+    jTextField3.setEditable(false); // Optional: aron dili ma-edit sa student ang email
+
+ //To change body of generated methods, choose Tools | Templates.
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,11 +58,23 @@ public void displayUserProfile() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btnSubmit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        lblFullname = new javax.swing.JLabel();
-        lblEmail = new javax.swing.JLabel();
-        lblRole = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,36 +83,234 @@ public void displayUserProfile() {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 200, 30));
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 200, 30));
+
+        jComboBox1.setBackground(new java.awt.Color(153, 153, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "GRADE & LEVEL", "GRADE 7", "GRADE 8", "GRADE 9", "GRADE 10", " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, 30));
+
+        jLabel8.setText("TEACHER NAME:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jLabel9.setText("SECTION:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSubmit.setText("SUBMIT");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, -1, 30));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 620, 170));
+
+        jLabel10.setText("Email:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, -1));
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 180, 30));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("REQUEST GRADES");
+        jLabel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 160, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 680, 420));
+
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Student Dashboard");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 13, 238, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 50));
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\student")); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 50, 180, 180));
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("HOME");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 140, -1));
 
-        lblFullname.setBackground(new java.awt.Color(204, 204, 204));
-        lblFullname.setFont(new java.awt.Font("Palatino Linotype", 1, 12)); // NOI18N
-        lblFullname.setText("FullName:");
-        jPanel3.add(lblFullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 190, 30));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("MY PROFILE");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 140, -1));
 
-        lblEmail.setFont(new java.awt.Font("Palatino Linotype", 1, 12)); // NOI18N
-        lblEmail.setText("Email:");
-        jPanel3.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 170, 30));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("LOGOUT");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 140, -1));
 
-        lblRole.setFont(new java.awt.Font("Palatino Linotype", 1, 12)); // NOI18N
-        lblRole.setText("Role:");
-        jPanel3.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 140, 30));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 150, 20));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 400, 190));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-11, -4, 760, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+          
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Are you sure you want to logout?", "Logout Confirmation", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+   
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        new landing().setVisible(true); 
+        this.dispose(); 
+        }
+      
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+                                            
+    Studentprofile sp = new Studentprofile(userEmail); 
+    sp.setVisible(true);
+    this.dispose(); 
+
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+  String teacher = jTextField1.getText(); 
+    String section = jTextField2.getText(); 
+    String email = jTextField3.getText();   
+    String gradeLvl = jComboBox1.getSelectedItem().toString();
+    displayTransactions();
+
+    if(teacher.isEmpty() || section.isEmpty() || email.isEmpty()){
+        javax.swing.JOptionPane.showMessageDialog(this, "Palihug kumplytoha ang tanang fields!");
+    } else {
+        try {
+            java.sql.Connection conn = config.config.connectDB();
+            String sql = "INSERT INTO tbl_transactions (user_email, grade_level, teacher_name, section, status) VALUES (?, ?, ?, ?, 'Pending')";
+            
+            java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);     
+            pstmt.setString(2, gradeLvl);  
+            pstmt.setString(3, teacher);   
+            pstmt.setString(4, section);    
+            
+            pstmt.executeUpdate(); // I-save ang data sa database
+            
+            // --- KINI ANG PINAKA-IMPORTANTE ---
+            displayTransactions(); // <--- Kini ang mo-refresh sa table automatic
+            // ----------------------------------
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Request Submitted Successfully!");
+            
+            // I-clear ang input fields
+            jTextField1.setText("");
+            jTextField2.setText("");
+            
+            conn.close();
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+                                         
+    int row = jTable1.getSelectedRow();
+    
+    // 2. Siguroha nga naay napili nga row (dili -1)
+    if (row != -1) {
+        // Kuhaa ang data gikan sa columns base sa index niini (0, 1, 2...)
+        // Pananglitan: Column 1 = Grade Level, Column 2 = Teacher Name
+        
+        String gradeLevel = jTable1.getValueAt(row, 1).toString();
+        String teacherName = jTable1.getValueAt(row, 2).toString();
+        String section = jTable1.getValueAt(row, 3).toString();
+        
+        // 3. I-display ang data balik sa imong mga fields
+        jComboBox1.setSelectedItem(gradeLevel); // Para sa Grade Level dropdown
+        jTextField1.setText(teacherName);      // Para sa Teacher Name field
+        jTextField2.setText(section);          // Para sa Section field
+        
+        // Optional: I-pakita ang mga labels/fields kon pananglitan naka-tago sila
+        jLabel8.setVisible(true);
+        jTextField1.setVisible(true);
+        jLabel9.setVisible(true);
+        jTextField2.setVisible(true);
+        jComboBox1.setVisible(true);
+    }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,12 +348,79 @@ public void displayUserProfile() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblFullname;
-    private javax.swing.JLabel lblRole;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    private void displayUserProfile() {
+        
+        try {
+            // Siguroha nga husto ang imong config package name
+            java.sql.Connection conn = config.config.connectDB(); 
+            String sql = "SELECT fullname FROM tbl_user WHERE email = ?";
+            java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userEmail);
+            java.sql.ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                // I-set ang fullname sa imong jLabel7
+                jLabel7.setText(rs.getString("fullname"));
+            }
+            
+            rs.close();
+            pstmt.close();
+            conn.close();
+        } catch (Exception e) {
+            System.out.println("Error loading profile: " + e.getMessage());
+        } // Closing sa catch
+    } // Closing sa displayUserProfile method
+
+private void displayTransactions() {
+  // 1. I-setup ang columns (Gikuha ang 'Grade' kay wala man sa imong DB)
+    String[] columnNames = {"ID", "Grade Level", "Teacher", "Section", "Status"};
+    DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+    jTable1.setModel(model); 
+
+    try {
+        java.sql.Connection conn = config.config.connectDB();
+        // Gi-subay ang columns base sa imong screenshot: t_id(1), grade_level(3), teacher_name(4), section(5), status(6)
+        String sql = "SELECT t_id, grade_level, teacher_name, section, status FROM tbl_transactions WHERE user_email = ?";
+        
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, userEmail); 
+        java.sql.ResultSet rs = pstmt.executeQuery();
+
+        while(rs.next()){
+            model.addRow(new Object[]{
+                rs.getInt(1),    // t_id
+                rs.getString(2), // grade_level
+                rs.getString(3), // teacher_name
+                rs.getString(4), // section
+                rs.getString(5)  // status
+            });
+        }
+        rs.close();
+        pstmt.close();
+        conn.close();
+    } catch (Exception e) {
+        System.out.println("Table Error: " + e.getMessage());
+    }
+}
 }

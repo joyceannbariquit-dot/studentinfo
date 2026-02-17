@@ -44,7 +44,7 @@ public class landing extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("WELCOME TO STUDENT INFORMATION SYSTEM");
         jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 390, 70));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 390, 70));
 
         jButton1.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
         jButton1.setText("LOGIN");
@@ -53,7 +53,7 @@ public class landing extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 110, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 110, 40));
 
         jButton2.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
         jButton2.setText("REGISTER");
@@ -62,20 +62,21 @@ public class landing extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 110, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 110, 40));
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("STUDENT INFORMATION SYSTEM");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 470, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 470, 40));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Downloads\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel4.setText("jLabel4");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -40, 450, 560));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -30, 450, 560));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 370));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

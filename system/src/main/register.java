@@ -18,6 +18,7 @@ public class register extends javax.swing.JFrame {
      * Creates new form register
      */
     public register() {
+  
         initComponents();
     }
 
@@ -62,40 +63,40 @@ public class register extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("REGISTERATION");
         jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, 170, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 180, 40));
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel4.setText("Full Name:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, 20));
 
         txtFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFullNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txtFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 230, 30));
+        jPanel1.add(txtFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel5.setText("Email:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 230, 30));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 230, 30));
 
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel6.setText("Password:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, -1, 30));
 
         btnPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 230, 30));
+        jPanel1.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 230, 30));
 
         jButton1.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jButton1.setText("Enter");
@@ -104,7 +105,7 @@ public class register extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 70, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 70, 30));
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,20 +119,21 @@ public class register extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 70, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, 70, 30));
 
         jLabel8.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel8.setText("Role:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, -1));
-        jPanel1.add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 230, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
+        jPanel1.add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 230, 30));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("D:\\Pictures\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel10.setText("jLabel10");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 450, 470));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed

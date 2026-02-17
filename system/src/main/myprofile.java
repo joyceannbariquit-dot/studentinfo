@@ -42,6 +42,12 @@ public class myprofile extends javax.swing.JFrame {
 
     // 3. Importante ni para sa NetBeans Design View
     public myprofile() {
+        if (UserSession.loggedInUser == null) {
+    javax.swing.JOptionPane.showMessageDialog(null, "Required Login!");
+    new login().setVisible(true);
+    this.dispose();
+    return;
+}
         initComponents();
     }
     
@@ -68,11 +74,9 @@ public class myprofile extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         lblRole = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,17 +84,17 @@ public class myprofile extends javax.swing.JFrame {
         Fullname.setBackground(new java.awt.Color(153, 153, 255));
         Fullname.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFullname.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblFullname.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         lblFullname.setText("Fullname:");
-        Fullname.add(lblFullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+        Fullname.add(lblFullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        lblEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         lblEmail.setText("Email:");
-        Fullname.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        Fullname.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
-        lblRole.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblRole.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         lblRole.setText("Role:");
-        Fullname.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        Fullname.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("BACK");
@@ -99,22 +103,28 @@ public class myprofile extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        Fullname.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
+        Fullname.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, -1, -1));
 
-        jPanel1.add(Fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 360, 190));
+        jPanel1.add(Fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 60, 830, 420));
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("ADMIN PROFILE");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 270, -1));
 
-        jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
-        jLabel1.setText("ADMIN PROFILE");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 3, -1, 50));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 50));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 360));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -165,9 +175,8 @@ public class myprofile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fullname;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullname;
     private javax.swing.JLabel lblRole;

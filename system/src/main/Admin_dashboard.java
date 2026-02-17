@@ -5,6 +5,12 @@
  */
 package main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER16
@@ -16,8 +22,11 @@ public class Admin_dashboard extends javax.swing.JFrame {
      */
     public Admin_dashboard() {
         initComponents();
+    
+       
+     
         
-    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,6 +40,7 @@ private String adminEmail;
 public Admin_dashboard(String email) {
     this.adminEmail = email; // Store the email
     initComponents();
+    displayAdminName(); // Tawgon nato kini para mo-set sa text sa label
 }
 
 
@@ -38,7 +48,6 @@ public Admin_dashboard(String email) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,19 +57,18 @@ public Admin_dashboard(String email) {
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblAdminName = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnUpdate = new javax.swing.JButton();
-
-        jLabel4.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("HOME");
+        jButton1 = new javax.swing.JButton();
+        btnApprove = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,9 +80,9 @@ public Admin_dashboard(String email) {
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Admin Dashboard");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 280, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 280, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 50));
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,7 +95,7 @@ public Admin_dashboard(String email) {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 110, 20));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 220, 170, 30));
 
         jLabel7.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -97,19 +105,25 @@ public Admin_dashboard(String email) {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 110, 20));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 370, 170, 40));
 
         jLabel9.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("REPORTS");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 110, 20));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 270, 170, 30));
 
         jLabel5.setBackground(new java.awt.Color(153, 153, 255));
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("HOME");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 110, 20));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 170, 170, 40));
 
+        jLabel1.setBackground(new java.awt.Color(153, 153, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ACCOUNT");
@@ -118,9 +132,17 @@ public Admin_dashboard(String email) {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 110, -1));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 170, 30));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 110, 300));
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\admin")); // NOI18N
+        jLabel8.setText("jLabel8");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 200, 120));
+
+        lblAdminName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAdminName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(lblAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 170, 20));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 150, 470));
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -130,7 +152,7 @@ public Admin_dashboard(String email) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, 30));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 60, 100, 30));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +164,7 @@ public Admin_dashboard(String email) {
                 jTextField1KeyReleased(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 250, 30));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 240, 30));
 
         jButton3.setBackground(new java.awt.Color(153, 153, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -152,7 +174,7 @@ public Admin_dashboard(String email) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 60, 100, 30));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 80, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -169,7 +191,7 @@ public Admin_dashboard(String email) {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 610, 240));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 640, 340));
 
         btnUpdate.setBackground(new java.awt.Color(153, 153, 255));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -179,11 +201,41 @@ public Admin_dashboard(String email) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 30));
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 60, 100, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 350));
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("ADD");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 90, 30));
+
+        btnApprove.setBackground(new java.awt.Color(153, 153, 255));
+        btnApprove.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnApprove.setText("APPROVE");
+        btnApprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApproveActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 110, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, Short.MAX_VALUE)
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -196,41 +248,44 @@ public Admin_dashboard(String email) {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        
                                               
-                         
-   int selectedRow = jTable1.getSelectedRow();
-    
-    if (selectedRow == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please select a table!");
+                                        
+    String idToDelete = javax.swing.JOptionPane.showInputDialog(this, "Please enter the User ID you wish to delete:");
+
+    if (idToDelete == null) return; // User clicked Cancel
+
+    if (idToDelete.trim().isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error: ID cannot be empty.", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    // 1. Kuhaa ang ID sa Column 0 ug Name sa Column 1
-    String id = jTable1.getValueAt(selectedRow, 0).toString();
-    String name = jTable1.getValueAt(selectedRow, 1).toString();
-
+    // Confirmation
     int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
-            "Sigurado ka nga i-delete nimo si " + name + "?", "Confirm Delete", 
-            javax.swing.JOptionPane.YES_NO_OPTION);
+            "Are you sure you want to permanently delete User ID: " + idToDelete + "?", 
+            "Confirm Deletion", javax.swing.JOptionPane.YES_NO_OPTION);
 
     if (confirm == javax.swing.JOptionPane.YES_OPTION) {
         try {
             java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-            // 2. Gamita ang ID sa WHERE clause
             String sql = "DELETE FROM tbl_user WHERE id = ?";
             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setString(1, idToDelete);
 
             int rowsDeleted = pstmt.executeUpdate();
+            
             if (rowsDeleted > 0) {
-                javax.swing.JOptionPane.showMessageDialog(this, "User Deleted!");
-                displayUsers(); // I-refresh ang table
+                javax.swing.JOptionPane.showMessageDialog(this, "Success: User ID " + idToDelete + " has been removed.");
+                displayUsers();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Notice: No user found with ID " + idToDelete + ".", "Record Not Found", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
             conn.close();
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, "Delete Error: " + e.getMessage());
         }
     }
+
 
 
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -238,48 +293,35 @@ public Admin_dashboard(String email) {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
                                            
-    String searchName = jTextField1.getText(); // Get the name from the text field
+   // KINI ANG USBA SA IMONG SEARCH CODE
+try {
+    Connection conn = DriverManager.getConnection("jdbc:sqlite:info.db");
     
-    // Check if the text field is empty
-    if (searchName.isEmpty()) {
-        displayUsers(); // If empty, show all users again
-        return;
+    // I-apil ang role ug status sa SELECT statement
+    String sql = "SELECT id, fullname, email, role, status FROM tbl_user WHERE fullname LIKE ? OR email LIKE ?";
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+    pstmt.setString(1, "%" + jTextField1.getText() + "%");
+    pstmt.setString(2, "%" + jTextField1.getText() + "%");
+    ResultSet rs = pstmt.executeQuery();
+
+    // Kuhaa ang model sa imong jTable1
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // I-clear ang table sa dili pa mo-display og bag-o
+
+    while (rs.next()) {
+        // I-add ang 5 ka data sa array para sa 5 ka columns
+        model.addRow(new Object[]{
+            rs.getInt("id"),
+            rs.getString("fullname"),
+            rs.getString("email"),
+            rs.getString("role"),   // Bag-ong gi-add
+            rs.getString("status")  // Bag-ong gi-add
+        });
     }
-
-    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Clear the table before showing search results
-
-    try {
-   
-        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-        
-     
-        String sql = "SELECT fullname, email, role FROM tbl_user WHERE fullname LIKE ?";
-        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, "%" + searchName + "%"); 
-        
-        java.sql.ResultSet rs = pstmt.executeQuery();
-
-        while (rs.next()) {
-            model.addRow(new Object[]{
-                rs.getString("fullname"),
-                rs.getString("email"),
-                rs.getString("role"),
-              
-                    
-            });
-        }
-        
-        // If no results are found
-        if (model.getRowCount() == 0) {
-             javax.swing.JOptionPane.showMessageDialog(this, "No user found with that name.");
-        }
-        
-        conn.close();
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Search Error: " + e.getMessage());
-    }
-
+    conn.close();
+} catch (Exception e) {
+    System.out.println("Search Error: " + e.getMessage());
+}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
@@ -287,30 +329,35 @@ public Admin_dashboard(String email) {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-   int row = jTable1.getSelectedRow();
-if (row != -1) {
-    // 1. Kuhaa ang ID gikan sa table (pananglitan Column 0 ang ID)
-    String id = jTable1.getValueAt(row, 0).toString(); 
-    String newName = jTextField1.getText();
-
-    try {
-        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-        // 2. Gamita ang ID sa WHERE clause imbes nga email
-        String sql = "UPDATE tbl_user SET fullname = ? WHERE id = ?"; 
-        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-        
-        pstmt.setString(1, newName);
-        pstmt.setString(2, id); // Siguroha nga ID ang basehan
-
-        pstmt.executeUpdate();
-        javax.swing.JOptionPane.showMessageDialog(this, "Updated successfully!");
-        displayUsers(); // I-refresh ang table
-        conn.close();
-    } catch (Exception e) {
-        System.out.println(e.getMessage());
+        // TODO add your handling code here:               
+                                      
+    int row = jTable1.getSelectedRow();
+    
+    // 1. Check kung naay napili nga row
+    if (row == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please select a user from the table!");
+        return;
     }
-}
+
+    // 2. Kuhaa ang data gikan sa table columns
+    // Index: 0=ID, 1=Fullname, 2=Email, 3=Role
+    String id = jTable1.getValueAt(row, 0).toString();
+    String name = jTable1.getValueAt(row, 1).toString();
+    String email = jTable1.getValueAt(row, 2).toString();
+    String role = jTable1.getValueAt(row, 3).toString();
+
+    // 3. I-open ang updateUser frame ug ipasa ang data
+    updateUser up = new updateUser(id, name, email, role); 
+    up.setVisible(true);
+    up.setLocationRelativeTo(null);
+    
+    // 4. Isira ang dashboard
+    this.dispose();
+
+                                            
+   
+
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -366,6 +413,80 @@ if (row != -1) {
 
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
+        // TODO add your handling code here:
+                                            
+    int row = jTable1.getSelectedRow();
+    
+    // Check kung naay gi-select nga user sa table
+    if (row == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please select a user from the table first!");
+        return;
+    }
+
+    // Kuhaon ang ID gikan sa column 0 sa napili nga row
+    String id = jTable1.getValueAt(row, 0).toString();
+    String name = jTable1.getValueAt(row, 1).toString();
+
+    // Confirm sa admin kung i-approve ba gyud
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Are you sure you want to approve " + name + "?", "Confirm Approval", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        try {
+            java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+            // I-update ang status ngadto sa 'Active'
+            String sql = "UPDATE tbl_user SET status = 'Active' WHERE id = ?";
+            java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            
+            int result = pstmt.executeUpdate();
+            
+            if (result > 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, name + " is now ACTIVE!");
+                displayUsers(); // I-refresh ang table para makita ang bag-ong status
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+        
+    }//GEN-LAST:event_btnApproveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+                                         
+    // 1. I-initialize ang imong bag-ong frame
+    createUser addFrame = new createUser();
+    
+    // 2. I-pakita ang frame
+    addFrame.setVisible(true);
+    
+    // 3. (Optional) I-center ang frame sa screen
+    addFrame.setLocationRelativeTo(null);
+
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        ReportFrame rf = new ReportFrame();
+    
+    // 2. I-pakita ang ReportFrame
+    rf.setVisible(true);
+    
+    // 3. I-center kini sa screen (optional)
+    rf.setLocationRelativeTo(null);
+    
+    // 4. Isira o i-hide ang dashboard (pilia ang usa)
+    this.dispose(); // Gamita kini kung gusto nimo isira ang dashboard
+
+    }//GEN-LAST:event_jLabel9MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -408,21 +529,23 @@ if (row != -1) {
     model.addColumn("Fullname"); // Column index 1
     model.addColumn("Email");    // Column index 2
     model.addColumn("Role");     // Column index 3
-   model.addColumn("Status"); 
+    model.addColumn("Status");
     model.setRowCount(0); 
 
     try {
         java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
         java.sql.Statement stmt = conn.createStatement();
         // 1. I-apil ang 'id' sa imong SELECT query
-        java.sql.ResultSet rs = stmt.executeQuery("SELECT id, fullname, email, role FROM tbl_user");
+        java.sql.ResultSet rs = stmt.executeQuery("SELECT id, fullname, email, role, status FROM tbl_user");
 
         while (rs.next()) {
             model.addRow(new Object[]{
                 rs.getString("id"),       // I-load ang ID sa column 0
                 rs.getString("fullname"), // Column 1
                 rs.getString("email"),    // Column 2
-                rs.getString("role")     
+                rs.getString("role"),
+                rs.getString("status")
+    
             });
         }
         conn.close();
@@ -431,18 +554,37 @@ if (row != -1) {
     }
 
 }
+   private void displayAdminName() {
+    try {
+        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+        String sql = "SELECT fullname FROM tbl_user WHERE email = ?";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, adminEmail);
+        java.sql.ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            String name = rs.getString("fullname");
+            lblAdminName.setText(name); // I-set ang text sa imong bag-ong label
+        }
+        conn.close();
+    } catch (Exception e) {
+        System.out.println("Error fetching name: " + e.getMessage());
+    }
+}
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -450,5 +592,7 @@ if (row != -1) {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblAdminName;
     // End of variables declaration//GEN-END:variables
-}
+
+    }

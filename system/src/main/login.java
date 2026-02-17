@@ -15,6 +15,7 @@ public class login extends javax.swing.JFrame {
      * Creates new form login
      */
     public login() {
+   
         initComponents();
        
     }
@@ -39,27 +40,28 @@ public class login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Email:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, -1, -1));
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
-        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 210, 30));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 210, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Password:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 100, 20));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 100, 20));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -69,20 +71,20 @@ public class login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 80, 30));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 80, 30));
 
         btnPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPasswordActionPerformed(evt);
             }
         });
-        jPanel2.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 210, 30));
+        jPanel2.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 210, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("LOGIN");
         jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 170, 40));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 170, 40));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton2.setText("Back");
@@ -91,11 +93,11 @@ public class login extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 80, 30));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel1.setText("STUDENT INFORMATION SYSTEM");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setForeground(new java.awt.Color(51, 51, 255));
@@ -105,15 +107,28 @@ public class login extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("D:\\Pictures\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel6.setText("jLabel6");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -20, 450, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -10, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 350));
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, 0, 450, 490));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, Short.MAX_VALUE)
+        );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -131,12 +146,10 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-  
+                                    
     String email = txtEmail.getText().trim();
     String password = new String(btnPassword.getPassword());
 
-    // Check if fields are empty
     if (email.isEmpty() || password.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please enter your credentials!");
         return;
@@ -144,42 +157,40 @@ public class login extends javax.swing.JFrame {
 
     config.config con = new config.config();
     
-    // 1. Authenticate the user
     if (con.authenticate(email, password)) {
-        String role = "";
         try {
-            // 2. Retrieve role from database
-            java.sql.Connection conn = config.config.connectDB(); 
-            java.sql.PreparedStatement pstmt = conn.prepareStatement("SELECT role FROM tbl_user WHERE email = ?");
+            java.sql.Connection conn = config.config.connectDB();
+            // GI-AYO: Gidugangan og 'status' ang query para makuha ang Active/Pending
+            java.sql.PreparedStatement pstmt = conn.prepareStatement("SELECT role, status FROM tbl_user WHERE email = ?");
             pstmt.setString(1, email);
             java.sql.ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                role = rs.getString("role");
+                String role = rs.getString("role");
+                String status = rs.getString("status");
+
+                // GI-AYO: (status is Active) OR (role is Admin)
+                // Kini nagpasabot nga basta Admin ang role, pasuldon bisag unsa pay status sa database
+                if (status.equalsIgnoreCase("Active") || role.equalsIgnoreCase("Admin")) {
+                    if (role.equalsIgnoreCase("Admin")) {
+                        Admin_dashboard ad = new Admin_dashboard(email); 
+                        ad.setVisible(true);
+                        this.dispose();
+                    } else if (role.equalsIgnoreCase("Student")) {
+                        // Mao ni ang mo-abli sa imong bag-ong Student_dashboard
+                        new Student_dashboard(email).setVisible(true); 
+                        this.dispose();
+                    }
+                
+                } else {
+                    // Kini ra ang para sa Student nga Pending
+                    javax.swing.JOptionPane.showMessageDialog(this, "Your account is still PENDING. Please wait for Admin approval.");
+                }
             }
             
-            // Close resources
             rs.close();
             pstmt.close();
-            conn.close(); 
-
-            // 3. Redirect based on Role
-          if (role.equalsIgnoreCase("Admin")) {
-        // Kinahanglan gamiton ang constructor nga naay (email)
-        Admin_dashboard ad = new Admin_dashboard(email); 
-       ad.setVisible(true);
-       this.dispose(); 
-
-
-        } else if (role.equalsIgnoreCase("Student")) {
-        // Imbes nga 'myprofile', kani dapat ang imong tawgon
-        Student_dashboard sd = new Student_dashboard(email); 
-        sd.setVisible(true);
-        this.dispose(); 
-    
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Role not recognized!");
-            }
+            conn.close();
             
         } catch (java.sql.SQLException e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Database Error: " + e.getMessage());
@@ -250,6 +261,8 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables

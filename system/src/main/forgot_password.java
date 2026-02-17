@@ -15,6 +15,12 @@ public class forgot_password extends javax.swing.JFrame {
      * Creates new form login
      */
     public forgot_password() {
+        if (UserSession.loggedInUser == null) {
+    javax.swing.JOptionPane.showMessageDialog(null, "Required Login!");
+    new login().setVisible(true);
+    this.dispose();
+    return;
+}
         initComponents();
     }
 
@@ -47,18 +53,18 @@ public class forgot_password extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel2.setText("Email:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
-        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 210, 30));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 210, 30));
 
         jLabel3.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel3.setText("New Password:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 110, 20));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 110, 20));
 
         btnClear.setBackground(new java.awt.Color(255, 255, 255));
         btnClear.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
@@ -68,20 +74,20 @@ public class forgot_password extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        jPanel2.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 80, 30));
+        jPanel2.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 80, 30));
 
         btnPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPasswordActionPerformed(evt);
             }
         });
-        jPanel2.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 210, 30));
+        jPanel2.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 210, 30));
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Forgot Password");
         jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 170, 40));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 170, 40));
 
         btnBack.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
         btnBack.setText("Back");
@@ -90,7 +96,7 @@ public class forgot_password extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 80, 30));
+        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, 80, 30));
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel1.setText("STUDENT INFORMATION SYSTEM");
@@ -103,15 +109,16 @@ public class forgot_password extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, -1, 30));
+        jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, -1, 30));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\Pictures\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel5.setText("jLabel5");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -70, 450, 590));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -150, 450, 780));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 350));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
