@@ -15,16 +15,19 @@ import javax.swing.JOptionPane;
  * @author Joyce Ann
  */
 public class createUser extends javax.swing.JFrame {
-
+  private String adminEmail;
 
     /**
      * Creates new form createUser
      */
     public createUser() {
-   
         initComponents();
     }
 
+    public createUser(String email) {
+        this.adminEmail = email; 
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,8 +114,9 @@ public class createUser extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
      // Line 117 sa imong createUser.java
-    Admin_dashboard ads = new Admin_dashboard();
-    ads.setVisible(true);
+   Admin_dashboard ad = new Admin_dashboard(this.adminEmail); 
+    ad.setVisible(true);
+    ad.setLocationRelativeTo(null);
     this.dispose();
 
     }//GEN-LAST:event_btnBackActionPerformed
@@ -157,13 +161,10 @@ public class createUser extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(this, "User Saved Successfully!");
 
-        // 4. Balik sa Dashboard human ma-save
-        Admin_dashboard ads = new Admin_dashboard();
-        ads.setVisible(true);
-        this.dispose();
-
-        pst.close();
-        con.close();
+    Admin_dashboard ads = new Admin_dashboard(this.adminEmail); 
+ads.setVisible(true);
+ads.setLocationRelativeTo(null); // Para ma-center ang dashboard
+this.dispose();
 
     } catch (Exception e) {
         // Check kung ang email duplicate

@@ -12,6 +12,8 @@ package main;
 public class ReportFrame extends javax.swing.JFrame {
     private String adminEmail;
     private String keyword;
+    private String userEmail;
+    private String adminemail;
 
     /**
      * Creates new form ReportFrame
@@ -23,6 +25,12 @@ public class ReportFrame extends javax.swing.JFrame {
         initComponents();
         displayTransactions();
     }
+
+   ReportFrame(String adminEmail) {
+    this.userEmail = adminEmail; // I-assign ang sulod sa parameter ngadto sa variable
+    initComponents();
+    displayTransactions();
+}
     
 
     /**
@@ -46,7 +54,6 @@ public class ReportFrame extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,9 +120,18 @@ public class ReportFrame extends javax.swing.JFrame {
         });
         jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 80, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 820, 410));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 830, 410));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, -4, 830, 480));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,13 +192,10 @@ public class ReportFrame extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         // Balik sa Admin Dashboard ug ipasa ang email session
-    Admin_dashboard ds = new Admin_dashboard(this.adminEmail); 
-    ds.setVisible(true);
-    ds.setLocationRelativeTo(null); // I-center ang dashboard
-    
-    // Isira ang ReportFrame
-    this.dispose(); 
-
+  Admin_dashboard ad = new Admin_dashboard(this.userEmail); 
+    ad.setVisible(true);
+    ad.setLocationRelativeTo(null);
+    this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

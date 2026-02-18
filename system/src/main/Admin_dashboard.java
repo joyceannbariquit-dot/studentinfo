@@ -437,32 +437,18 @@ EditProfile ep = new EditProfile(this.adminEmail);
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                                         
-    // 1. I-initialize ang imong bag-ong frame
-    createUser addFrame = new createUser();
-    
-    // 2. I-pakita ang frame
+  createUser addFrame = new createUser(this.adminEmail); 
     addFrame.setVisible(true);
-    
-    // 3. (Optional) I-center ang frame sa screen
     addFrame.setLocationRelativeTo(null);
-
-        
+    this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-        ReportFrame rf = new ReportFrame();
-    
-    // 2. I-pakita ang ReportFrame
+    ReportFrame rf = new ReportFrame(this.adminEmail); // Husto kini
     rf.setVisible(true);
-    
-    // 3. I-center kini sa screen (optional)
     rf.setLocationRelativeTo(null);
-    
-    // 4. Isira o i-hide ang dashboard (pilia ang usa)
-    this.dispose(); // Gamita kini kung gusto nimo isira ang dashboard
-
+    this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
@@ -496,7 +482,7 @@ EditProfile ep = new EditProfile(this.adminEmail);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin_dashboard().setVisible(true);
+            new ReportFrame(null).setVisible(true);
             }
         });
     }

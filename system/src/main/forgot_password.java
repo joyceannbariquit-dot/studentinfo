@@ -15,12 +15,7 @@ public class forgot_password extends javax.swing.JFrame {
      * Creates new form login
      */
     public forgot_password() {
-        if (UserSession.loggedInUser == null) {
-    javax.swing.JOptionPane.showMessageDialog(null, "Required Login!");
-    new login().setVisible(true);
-    this.dispose();
-    return;
-}
+       
         initComponents();
     }
 
