@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author USER16
  */
 public class Admin_dashboard extends javax.swing.JFrame {
+    private String userEmail;
 
     /**
      * Creates new form home
@@ -57,8 +58,8 @@ public Admin_dashboard(String email) {
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         lblAdminName = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -134,13 +135,12 @@ public Admin_dashboard(String email) {
         });
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 310, 170, 30));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\admin")); // NOI18N
-        jLabel8.setText("jLabel8");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 200, 120));
-
         lblAdminName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAdminName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel3.add(lblAdminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 170, 20));
+
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 130, 110));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 150, 470));
 
@@ -331,32 +331,10 @@ try {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:               
                                       
-    int row = jTable1.getSelectedRow();
-    
-    // 1. Check kung naay napili nga row
-    if (row == -1) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Please select a user from the table!");
-        return;
-    }
-
-    // 2. Kuhaa ang data gikan sa table columns
-    // Index: 0=ID, 1=Fullname, 2=Email, 3=Role
-    String id = jTable1.getValueAt(row, 0).toString();
-    String name = jTable1.getValueAt(row, 1).toString();
-    String email = jTable1.getValueAt(row, 2).toString();
-    String role = jTable1.getValueAt(row, 3).toString();
-
-    // 3. I-open ang updateUser frame ug ipasa ang data
-    updateUser up = new updateUser(id, name, email, role); 
-    up.setVisible(true);
-    up.setLocationRelativeTo(null);
-    
-    // 4. Isira ang dashboard
-    this.dispose();
-
-                                            
-   
-
+  // I-pasa ang email sa user ngadto sa EditProfile
+EditProfile ep = new EditProfile(this.adminEmail); 
+    ep.setVisible(true);
+    ep.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -555,23 +533,35 @@ try {
 
 }
    private void displayAdminName() {
+   
     try {
         java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-        String sql = "SELECT fullname FROM tbl_user WHERE email = ?";
+        // I-apil ang profile_pic sa SELECT statement
+        String sql = "SELECT fullname, profile_pic FROM tbl_user WHERE email = ?";
         java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, adminEmail);
         java.sql.ResultSet rs = pstmt.executeQuery();
 
         if (rs.next()) {
+            // I-display ang Fullname sa label
             String name = rs.getString("fullname");
-            lblAdminName.setText(name); // I-set ang text sa imong bag-ong label
+            lblAdminName.setText(name); 
+            
+            // I-display ang Profile Picture sa jLabel3 (o jLabel8)
+            String path = rs.getString("profile_pic");
+            if (path != null && !path.isEmpty()) {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(path);
+                // I-resize ang image base sa gidak-on sa jLabel3
+                java.awt.Image img = icon.getImage().getScaledInstance(jLabel3.getWidth(), jLabel3.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                jLabel3.setIcon(new javax.swing.ImageIcon(img));
+                jLabel3.setText(""); // Tangtangon ang "jLabel3" nga text
+            }
         }
         conn.close();
     } catch (Exception e) {
-        System.out.println("Error fetching name: " + e.getMessage());
+        System.out.println("Error fetching admin data: " + e.getMessage());
     }
 }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprove;
@@ -581,10 +571,10 @@ try {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

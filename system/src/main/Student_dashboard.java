@@ -70,11 +70,12 @@ public class Student_dashboard extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        lblEditProfile = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -164,14 +165,10 @@ public class Student_dashboard extends javax.swing.JFrame {
         jLabel1.setText("Student Dashboard");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\student")); // NOI18N
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 50, 180, 180));
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("HOME");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 140, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -181,7 +178,7 @@ public class Student_dashboard extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 140, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 140, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,11 +188,23 @@ public class Student_dashboard extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 140, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 140, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 150, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 150, 20));
+
+        lblEditProfile.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblEditProfile.setText("EDIT PROFILE");
+        lblEditProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEditProfileMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblEditProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
+
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 90));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
 
@@ -312,6 +321,21 @@ public class Student_dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void lblEditProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEditProfileMouseClicked
+        // TODO add your handling code here:
+        EditProfile ep = new EditProfile(this.userEmail); 
+    
+    // 3. I-pakita ang frame
+    ep.setVisible(true);
+    
+    // 4. I-center ang frame sa screen
+    ep.setLocationRelativeTo(null);
+    
+    // 5. (Optional) I-close o i-hide ang dashboard kung gusto nimo
+    // this.dispose(); 
+
+    }//GEN-LAST:event_lblEditProfileMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -352,7 +376,7 @@ public class Student_dashboard extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -367,30 +391,50 @@ public class Student_dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblEditProfile;
     // End of variables declaration//GEN-END:variables
 
     private void displayUserProfile() {
         
-        try {
-            // Siguroha nga husto ang imong config package name
-            java.sql.Connection conn = config.config.connectDB(); 
-            String sql = "SELECT fullname FROM tbl_user WHERE email = ?";
-            java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userEmail);
-            java.sql.ResultSet rs = pstmt.executeQuery();
+     try {
+        java.sql.Connection conn = config.config.connectDB();
+        // Gi-apil ang profile_pic sa SELECT statement
+        String sql = "SELECT fullname, profile_pic FROM tbl_user WHERE email = ?";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, userEmail); 
+        java.sql.ResultSet rs = pstmt.executeQuery();
 
-            if (rs.next()) {
-                // I-set ang fullname sa imong jLabel7
-                jLabel7.setText(rs.getString("fullname"));
-            }
+        if (rs.next()) {
+            // 1. I-set ang Title sa babaw (jLabel1)
+            jLabel1.setText("STUDENT DASHBOARD"); 
             
-            rs.close();
-            pstmt.close();
-            conn.close();
-        } catch (Exception e) {
-            System.out.println("Error loading profile: " + e.getMessage());
-        } // Closing sa catch
-    } // Closing sa displayUserProfile method
+            // 2. I-set ang Fullname sa student (jLabel7)
+            jLabel7.setText(rs.getString("fullname")); 
+            
+            // 3. I-set ang Picture sa student (jLabel11)
+            String path = rs.getString("profile_pic");
+            if (path != null && !path.isEmpty()) {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(path);
+                
+                // I-resize ang image base sa gidak-on sa jLabel11 sa imong design
+                java.awt.Image img = icon.getImage().getScaledInstance(
+                    jLabel11.getWidth(), 
+                    jLabel11.getHeight(), 
+                    java.awt.Image.SCALE_SMOOTH
+                );
+                
+                jLabel11.setIcon(new javax.swing.ImageIcon(img));
+                jLabel11.setText(""); // Tangtangon ang text nga "jLabel11"
+            }
+        }
+        rs.close();
+        pstmt.close();
+        conn.close();
+    } catch (Exception e) {
+        System.out.println("Error loading profile: " + e.getMessage());
+    }
+
+}
 
 private void displayTransactions() {
   // 1. I-setup ang columns (Gikuha ang 'Grade' kay wala man sa imong DB)

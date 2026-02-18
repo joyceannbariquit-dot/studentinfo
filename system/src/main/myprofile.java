@@ -20,22 +20,35 @@ public class myprofile extends javax.swing.JFrame {
         showUserProfile(); // Kini nga function maoy mokuha sa data sa DB
     }
     public void showUserProfile() {
-    try {
+   try {
         java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-        String sql = "SELECT fullname, email, role FROM tbl_user WHERE email = ?";
+        // I-apil ang profile_pic sa SELECT statement
+        String sql = "SELECT fullname, email, role, profile_pic FROM tbl_user WHERE email = ?";
         java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, userEmail); // Uses the email passed from the Account button
+        pstmt.setString(1, userEmail); 
         java.sql.ResultSet rs = pstmt.executeQuery();
 
         if (rs.next()) {
-            // Update these names to match your actual Label variable names
-            lblFullname.setText(rs.getString("Fullname"));
-            lblEmail.setText(rs.getString("Email"));
-            lblRole.setText(rs.getString("role"));
+            lblFullname.setText("Fullname: " + rs.getString("fullname"));
+            lblEmail.setText("Email: " + rs.getString("email"));
+            lblRole.setText("Role: " + rs.getString("role"));
+            
+            // Logic para sa Picture
+            String path = rs.getString("profile_pic");
+            if (path != null && !path.isEmpty()) {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(path);
+                // I-resize ang image base sa gidak-on sa lbl_img
+                java.awt.Image img = icon.getImage().getScaledInstance(lbl_img.getWidth(), lbl_img.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                lbl_img.setIcon(new javax.swing.ImageIcon(img));
+            } else {
+                lbl_img.setText("No Image Found");
+                lbl_img.setIcon(null);
+            }
         }
         conn.close();
     } catch (Exception e) {
         System.out.println("Error: " + e.getMessage());
+    
     }
     }
 
@@ -74,6 +87,7 @@ public class myprofile extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         lblRole = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        lbl_img = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,17 +98,17 @@ public class myprofile extends javax.swing.JFrame {
         Fullname.setBackground(new java.awt.Color(153, 153, 255));
         Fullname.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFullname.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
+        lblFullname.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         lblFullname.setText("Fullname:");
-        Fullname.add(lblFullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+        Fullname.add(lblFullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
 
-        lblEmail.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         lblEmail.setText("Email:");
-        Fullname.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        Fullname.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
 
-        lblRole.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
+        lblRole.setFont(new java.awt.Font("Palatino Linotype", 0, 14)); // NOI18N
         lblRole.setText("Role:");
-        Fullname.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        Fullname.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 130, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("BACK");
@@ -103,9 +117,12 @@ public class myprofile extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        Fullname.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, -1, -1));
+        Fullname.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 390, -1, -1));
 
-        jPanel1.add(Fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 60, 830, 420));
+        lbl_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Fullname.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 150, 110));
+
+        jPanel1.add(Fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 830, 430));
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,7 +137,7 @@ public class myprofile extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -180,5 +197,6 @@ public class myprofile extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullname;
     private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lbl_img;
     // End of variables declaration//GEN-END:variables
 }

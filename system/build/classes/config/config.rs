@@ -1,2 +1,0 @@
-config.conf
-config.config
