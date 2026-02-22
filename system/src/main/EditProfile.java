@@ -51,7 +51,6 @@ public class EditProfile extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,7 +107,16 @@ public class EditProfile extends javax.swing.JFrame {
         });
         jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 110, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,30 +148,42 @@ public class EditProfile extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        String name = txtFullname.getText().trim();
+   String name = txtFullname.getText().trim();
     String pass = new String(txtPassword.getPassword()).trim();
-    String email = txtEmail.getText();
+    String email = txtEmail.getText().trim();
+
+    // Validation (pabilin lang ni)
+    if (name.isEmpty() || pass.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Palihug puy-i ang tanan fields.");
+        return;
+    }
 
     try {
         java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-        // I-update ang fullname, password, ug profile_pic base sa email
         String sql = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
         java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, name);
         pstmt.setString(2, pass);
-        pstmt.setString(3, selectedImagePath);
+        pstmt.setString(3, selectedImagePath); 
         pstmt.setString(4, email); 
 
         int result = pstmt.executeUpdate();
         if (result > 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile Updated Successfully!");
-            this.dispose(); // Isira ang window human sa update
+            // 1. I-pakita ang Success Message
+            javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully!");
+
+            // 2. Human i-click ang OK, ablihan ang Admin_dashboard
+            // Gigamit nato ang 'email' variable para ma-load sa dashboard ang saktong user
+            Admin_dashboard ad = new Admin_dashboard(email); 
+            ad.setVisible(true);
+
+            // 3. Isira ang EditProfile window
+            this.dispose(); 
         }
         conn.close();
     } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Update Error: " + e.getMessage());
+        javax.swing.JOptionPane.showMessageDialog(this, "Database Error: " + e.getMessage());
     }
-
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**

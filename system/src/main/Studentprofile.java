@@ -111,7 +111,7 @@ try {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 380, -1, -1));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, -1, -1));
 
         lbl_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 140, 120));

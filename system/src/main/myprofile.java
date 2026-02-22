@@ -88,6 +88,7 @@ public class myprofile extends javax.swing.JFrame {
         lblRole = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         lbl_img = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,6 +112,7 @@ public class myprofile extends javax.swing.JFrame {
         lblRole.setText("Role:");
         Fullname.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 130, -1));
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,10 +120,20 @@ public class myprofile extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        Fullname.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 390, -1, -1));
+        Fullname.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, -1, -1));
 
         lbl_img.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Fullname.add(lbl_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 150, 110));
+
+        jButton2.setBackground(new java.awt.Color(153, 153, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jButton2.setText("EDIT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        Fullname.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
         jPanel1.add(Fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 830, 430));
 
@@ -145,6 +157,17 @@ public class myprofile extends javax.swing.JFrame {
     this.dispose(); 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        EditProfile ep = new EditProfile(this.userEmail); 
+    
+    // 2. I-pakita ang EditProfile window
+    ep.setVisible(true);
+    
+    // 3. Isira ang kasamtangang myprofile window
+    this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,6 +207,7 @@ public class myprofile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fullname;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEmail;

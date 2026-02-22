@@ -63,12 +63,13 @@ public class Student_dashboard extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnSubmit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,6 +77,7 @@ public class Student_dashboard extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         lblEditProfile = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        btnSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,6 +89,7 @@ public class Student_dashboard extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTextField1.setEditable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -102,28 +105,20 @@ public class Student_dashboard extends javax.swing.JFrame {
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 200, 30));
 
         jComboBox1.setBackground(new java.awt.Color(153, 153, 255));
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "GRADE & LEVEL", "GRADE 7", "GRADE 8", "GRADE 9", "GRADE 10", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, 30));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, -1, 30));
 
         jLabel8.setText("TEACHER NAME:");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         jLabel9.setText("SECTION:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
-
-        btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSubmit.setText("SUBMIT");
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, -1, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,23 +135,27 @@ public class Student_dashboard extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 620, 170));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 620, 170));
 
         jLabel10.setText("Email:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 176, -1, 20));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 180, 30));
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 200, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("REQUEST GRADES");
         jLabel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 160, -1));
+
+        jLabel2.setText("SUBJECT:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, -1));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 190, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 660, 420));
 
@@ -178,7 +177,7 @@ public class Student_dashboard extends javax.swing.JFrame {
                 jLabel4MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 140, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 140, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -201,10 +200,20 @@ public class Student_dashboard extends javax.swing.JFrame {
                 lblEditProfileMouseClicked(evt);
             }
         });
-        jPanel1.add(lblEditProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
+        jPanel1.add(lblEditProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 90));
+
+        btnSubmit.setBackground(new java.awt.Color(153, 153, 255));
+        btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSubmit.setText("SUBMIT");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 270, -1, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
 
@@ -242,45 +251,70 @@ public class Student_dashboard extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        String selectedGrade = jComboBox1.getSelectedItem().toString();
+    try {
+        // Connect sa imong database
+        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+        
+        // Mag-select ta sa teacher gikan sa imong Masterlist (tbl_subjects)
+        String sql = "SELECT teacher_name FROM tbl_subjects WHERE grade_level = ? LIMIT 1";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, selectedGrade);
+        java.sql.ResultSet rs = pstmt.executeQuery();
+        
+        if(rs.next()){
+            // I-set ang Teacher Name sa jTextField1 (Teacher field)
+            jTextField1.setText(rs.getString("teacher_name"));
+        } else {
+            jTextField1.setText("No Teacher Assigned");
+        }
+        conn.close();
+    } catch (Exception e) {
+        System.out.println("Error: " + e.getMessage());
+    }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-  String teacher = jTextField1.getText(); 
-    String section = jTextField2.getText(); 
-    String email = jTextField3.getText();   
-    String gradeLvl = jComboBox1.getSelectedItem().toString();
-    displayTransactions();
+  String email = jTextField3.getText();
+    String grade = jComboBox1.getSelectedItem().toString();
+    String teacher = jTextField1.getText();
+    String section = jTextField2.getText();
+    String subject = jTextField4.getText(); // Gikuha ang data gikan sa Subject field
+    String status = "Pending"; 
 
-    if(teacher.isEmpty() || section.isEmpty() || email.isEmpty()){
-        javax.swing.JOptionPane.showMessageDialog(this, "Palihug kumplytoha ang tanang fields!");
-    } else {
-        try {
-            java.sql.Connection conn = config.config.connectDB();
-            String sql = "INSERT INTO tbl_transactions (user_email, grade_level, teacher_name, section, status) VALUES (?, ?, ?, ?, 'Pending')";
-            
-            java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, email);     
-            pstmt.setString(2, gradeLvl);  
-            pstmt.setString(3, teacher);   
-            pstmt.setString(4, section);    
-            
-            pstmt.executeUpdate(); // I-save ang data sa database
-            
-            // --- KINI ANG PINAKA-IMPORTANTE ---
-            displayTransactions(); // <--- Kini ang mo-refresh sa table automatic
-            // ----------------------------------
+    // Validation: Siguraduhon nga naay sulod ang Section ug Subject
+    if(section.trim().isEmpty() || subject.trim().isEmpty()){
+        javax.swing.JOptionPane.showMessageDialog(this, "Palihog pun-i ang Section ug Subject!");
+        return;
+    }
 
-            javax.swing.JOptionPane.showMessageDialog(this, "Request Submitted Successfully!");
-            
-            // I-clear ang input fields
-            jTextField1.setText("");
-            jTextField2.setText("");
-            
-            conn.close();
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+    try {
+        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+        
+        // Gi-apil ang 'subject' sa SQL query
+        String sql = "INSERT INTO tbl_transactions (user_email, grade_level, teacher_name, section, subject, status) VALUES (?, ?, ?, ?, ?, ?)";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        
+        pstmt.setString(1, email);
+        pstmt.setString(2, grade);
+        pstmt.setString(3, teacher);
+        pstmt.setString(4, section);
+        pstmt.setString(5, subject); // I-save ang subject
+        pstmt.setString(6, status);
+
+        pstmt.executeUpdate();
+        javax.swing.JOptionPane.showMessageDialog(this, "Request Submitted Successfully!");
+        
+        displayTransactions(); // Refresh ang table
+        
+        // Limpyohan ang mga fields human ma-submit
+        jTextField2.setText(""); 
+        jTextField4.setText(""); 
+        
+        conn.close();
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
     }
 
     }//GEN-LAST:event_btnSubmitActionPerformed
@@ -377,6 +411,7 @@ public class Student_dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -391,6 +426,7 @@ public class Student_dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lblEditProfile;
     // End of variables declaration//GEN-END:variables
 
@@ -437,34 +473,32 @@ public class Student_dashboard extends javax.swing.JFrame {
 }
 
 private void displayTransactions() {
-  // 1. I-setup ang columns (Gikuha ang 'Grade' kay wala man sa imong DB)
-    String[] columnNames = {"ID", "Grade Level", "Teacher", "Section", "Status"};
-    DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+    String[] columnNames = {"ID", "Email", "Grade Level", "Teacher", "Section", "Subject", "Status"};
+    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(columnNames, 0);
     jTable1.setModel(model); 
 
     try {
-        java.sql.Connection conn = config.config.connectDB();
-        // Gi-subay ang columns base sa imong screenshot: t_id(1), grade_level(3), teacher_name(4), section(5), status(6)
-        String sql = "SELECT t_id, grade_level, teacher_name, section, status FROM tbl_transactions WHERE user_email = ?";
-        
+        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+        // Gi-apil ang 'subject' sa SELECT query
+        String sql = "SELECT t_id, user_email, grade_level, teacher_name, section, subject, status FROM tbl_transactions WHERE user_email = ?";
         java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, userEmail); 
         java.sql.ResultSet rs = pstmt.executeQuery();
 
         while(rs.next()){
             model.addRow(new Object[]{
-                rs.getInt(1),    // t_id
-                rs.getString(2), // grade_level
-                rs.getString(3), // teacher_name
-                rs.getString(4), // section
-                rs.getString(5)  // status
+                rs.getInt("t_id"),
+                rs.getString("user_email"),
+                rs.getString("grade_level"),
+                rs.getString("teacher_name"),
+                rs.getString("section"),
+                rs.getString("subject"), // I-display ang subject sa table
+                rs.getString("status")
             });
         }
-        rs.close();
-        pstmt.close();
         conn.close();
     } catch (Exception e) {
-        System.out.println("Table Error: " + e.getMessage());
+        System.out.println("Error: " + e.getMessage());
     }
 }
 }
