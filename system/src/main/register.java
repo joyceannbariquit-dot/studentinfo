@@ -98,6 +98,7 @@ public class register extends javax.swing.JFrame {
         });
         jPanel1.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 230, 30));
 
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jButton1.setText("Enter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +113,7 @@ public class register extends javax.swing.JFrame {
         jLabel1.setText("STUDENT INFORMATION SYSTEM");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(153, 153, 255));
         jButton2.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
         jButton2.setText("Back");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +128,7 @@ public class register extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
         jPanel1.add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 230, 30));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER16\\Downloads\\Baiquit\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel10.setText("jLabel10");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 450, 470));
 

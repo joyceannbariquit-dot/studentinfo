@@ -84,6 +84,7 @@ public class ManageSubjects extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMasterlist = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,13 +130,14 @@ public class ManageSubjects extends javax.swing.JFrame {
         jPanel1.add(txtTeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 180, 30));
 
         btnAdd.setBackground(new java.awt.Color(153, 153, 255));
+        btnAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAdd.setText("ADD SUBJECT");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         tblMasterlist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,17 +152,29 @@ public class ManageSubjects extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 750, 220));
 
         btnBack.setBackground(new java.awt.Color(153, 153, 255));
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(153, 153, 255));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setText("DELETE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 480));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeachActionPerformed
@@ -222,6 +236,50 @@ Admin_dashboard dash = new Admin_dashboard(this.adminEmail);
     this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:ZZ
+        // 1. Get the selected row index from the table
+    int row = tblMasterlist.getSelectedRow();
+    
+    // 2. Check if a row is actually selected
+    if (row == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please select a request from the table to delete.");
+        return;
+    }
+
+    // 3. Get the ID (t_id) from the first column (index 0)
+    String id = tblMasterlist.getValueAt(row, 0).toString();
+
+    // 4. Confirm deletion with the user
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Are you sure you want to delete this request?", "Confirm Deletion", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+        try {
+            // 5. Connect to the database
+            java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+            
+            // 6. SQL Delete Query
+            String sql = "DELETE FROM tbl_transactions WHERE t_id = ?";
+            java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+
+            // 7. Execute and provide feedback
+            int deleted = pstmt.executeUpdate();
+            if (deleted > 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Request Deleted successfully!");
+                displayTransactions(); // Refresh the table to show updated data
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,6 +319,7 @@ Admin_dashboard dash = new Admin_dashboard(this.adminEmail);
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JComboBox cbGrade;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -270,4 +329,8 @@ Admin_dashboard dash = new Admin_dashboard(this.adminEmail);
     private javax.swing.JTextField txtSub;
     private javax.swing.JTextField txtTeach;
     // End of variables declaration//GEN-END:variables
+
+    private void displayTransactions() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -55,12 +55,7 @@ public class myprofile extends javax.swing.JFrame {
 
     // 3. Importante ni para sa NetBeans Design View
     public myprofile() {
-        if (UserSession.loggedInUser == null) {
-    javax.swing.JOptionPane.showMessageDialog(null, "Required Login!");
-    new login().setVisible(true);
-    this.dispose();
-    return;
-}
+        
         initComponents();
     }
     
@@ -135,14 +130,14 @@ public class myprofile extends javax.swing.JFrame {
         });
         Fullname.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, -1, -1));
 
-        jPanel1.add(Fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 830, 430));
+        jPanel1.add(Fullname, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 800, 420));
 
         jLabel2.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ADMIN PROFILE");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 270, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 480));
 
         pack();
         setLocationRelativeTo(null);
@@ -199,7 +194,11 @@ public class myprofile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new myprofile().setVisible(true);
+                
+                if (UserSession.loggedInUser == null) {
+    javax.swing.JOptionPane.showMessageDialog(null, "Required Login!");
+    new login().setVisible(true);
+                }
             }
         });
     }
