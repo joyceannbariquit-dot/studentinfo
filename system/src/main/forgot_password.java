@@ -61,7 +61,7 @@ public class forgot_password extends javax.swing.JFrame {
         jLabel3.setText("New Password:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 110, 20));
 
-        btnClear.setBackground(new java.awt.Color(255, 255, 255));
+        btnClear.setBackground(new java.awt.Color(153, 153, 255));
         btnClear.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +84,7 @@ public class forgot_password extends javax.swing.JFrame {
         jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 170, 40));
 
+        btnBack.setBackground(new java.awt.Color(153, 153, 255));
         btnBack.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +98,7 @@ public class forgot_password extends javax.swing.JFrame {
         jLabel1.setText("STUDENT INFORMATION SYSTEM");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
+        btnUpdate.setBackground(new java.awt.Color(153, 153, 255));
         btnUpdate.setFont(new java.awt.Font("Palatino Linotype", 1, 13)); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +108,7 @@ public class forgot_password extends javax.swing.JFrame {
         });
         jPanel2.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, -1, 30));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER16\\Downloads\\Baiquit\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Desktop\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel5.setText("jLabel5");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -150, 450, 780));
 

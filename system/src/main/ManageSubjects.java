@@ -197,7 +197,7 @@ public class ManageSubjects extends javax.swing.JFrame {
     String teacher = txtTeach.getText();
 
     if(subject.trim().isEmpty() || teacher.trim().isEmpty()){
-        javax.swing.JOptionPane.showMessageDialog(this, "Palihog kumpytoha ang fields!");
+        javax.swing.JOptionPane.showMessageDialog(this, "Please fill the fields!");
         return;
     }
 
@@ -331,6 +331,6 @@ Admin_dashboard dash = new Admin_dashboard(this.adminEmail);
     // End of variables declaration//GEN-END:variables
 
     private void displayTransactions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 }

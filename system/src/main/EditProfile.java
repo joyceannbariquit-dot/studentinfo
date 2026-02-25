@@ -155,7 +155,7 @@ public class EditProfile extends javax.swing.JFrame {
 
     // Validation (pabilin lang ni)
     if (name.isEmpty() || pass.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Palihug puy-i ang tanan fields.");
+        javax.swing.JOptionPane.showMessageDialog(this, "Please fill the fields.");
         return;
     }
 

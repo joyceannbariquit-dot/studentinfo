@@ -71,7 +71,7 @@ public class landing extends javax.swing.JFrame {
         jLabel3.setText("STUDENT INFORMATION SYSTEM");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 470, 40));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER16\\Downloads\\Baiquit\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Desktop\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -30, 450, 560));
 

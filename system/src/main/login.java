@@ -114,7 +114,7 @@ public class login extends javax.swing.JFrame {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -20, 450, -1));
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -10, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER16\\Downloads\\Baiquit\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Desktop\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, 0, 450, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

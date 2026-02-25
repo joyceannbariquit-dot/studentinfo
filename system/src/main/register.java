@@ -128,7 +128,7 @@ public class register extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
         jPanel1.add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 230, 30));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER16\\Downloads\\Baiquit\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Desktop\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel10.setText("jLabel10");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 450, 470));
 

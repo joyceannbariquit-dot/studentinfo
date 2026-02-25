@@ -82,8 +82,8 @@ public class ReportFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 670, 280));
-        jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 250, 30));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 800, 310));
+        jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 250, 30));
 
         btnSearch.setBackground(new java.awt.Color(153, 153, 255));
         btnSearch.setText("search");
@@ -92,7 +92,7 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 80, 30));
+        jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 80, 30));
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -102,7 +102,7 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 80, -1));
+        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 80, 30));
 
         btnApprove.setBackground(new java.awt.Color(153, 153, 255));
         btnApprove.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -112,7 +112,7 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnApproveActionPerformed(evt);
             }
         });
-        jPanel2.add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel2.add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, 30));
 
         btnBack.setBackground(new java.awt.Color(153, 153, 255));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -122,7 +122,7 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 80, -1));
+        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 80, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -132,7 +132,7 @@ public class ReportFrame extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, 70));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 830, 420));
 
