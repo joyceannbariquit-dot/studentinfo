@@ -44,8 +44,6 @@ public class register extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        txtRole = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
         jLabel9.setText("jLabel9");
@@ -67,36 +65,36 @@ public class register extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel4.setText("Full Name:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, 20));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, 20));
 
         txtFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFullNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txtFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, 230, 30));
+        jPanel1.add(txtFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel5.setText("Email:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
-        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 230, 30));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 230, 30));
 
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel6.setText("Password:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, -1, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, -1, 30));
 
         btnPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 230, 30));
+        jPanel1.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 230, 30));
 
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
@@ -106,7 +104,7 @@ public class register extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 70, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 70, 30));
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -121,12 +119,7 @@ public class register extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, 70, 30));
-
-        jLabel8.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
-        jLabel8.setText("Role:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
-        jPanel1.add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 230, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, 70, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER16\\Downloads\\Baiquit\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
         jLabel10.setText("jLabel10");
@@ -151,49 +144,57 @@ public class register extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFullNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
-    config con = new config();
-    
- 
-    
+                                       
+  config con = new config();
 
-    // 1. Kuhaa ang data gikan sa text fields
     String name = txtFullName.getText().trim();
     String email = txtEmail.getText().trim();
     String pass = new String(btnPassword.getPassword());
-    String role = txtRole.getText().trim();
 
-    // 2. Validation: Siguroha nga dili blangko
-    if (name.isEmpty() || email.isEmpty() || pass.isEmpty() || role.isEmpty()) {
+    if (name.isEmpty() || email.isEmpty() || pass.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please fill up all fields!");
         return;
     }
 
-    // 3. Email Validation: Kinahanglan @gmail.com ang tumoy
     if (!email.toLowerCase().endsWith("@gmail.com")) {
         javax.swing.JOptionPane.showMessageDialog(this, "Invalid Email!");
         return;
     }
 
-    // 4. Role Validation: Admin o Student lang ang pwede
-    // Gigamit nato ang equalsIgnoreCase para bisan 'admin' o 'ADMIN' kay dawaton gihapon
-    if (!(role.equalsIgnoreCase("Admin") || role.equalsIgnoreCase("Student"))) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Invalid Role!");
-        return; // Dili kini i-save sa database kung sayop ang role
+    // --- KINI ANG DUGANG PARA DILI MA-DUPLICATE ---
+    try {
+        java.sql.Connection conn = config.connectDB();
+        String checkEmail = "SELECT email FROM tbl_user WHERE email = ?";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(checkEmail);
+        pstmt.setString(1, email);
+        java.sql.ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            // Kung naay nakita nga email, stop ang registration
+            javax.swing.JOptionPane.showMessageDialog(this, "Email is already registered! Use another one.");
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return; 
+        }
+        
+        rs.close();
+        pstmt.close();
+        conn.close();
+    } catch (java.sql.SQLException e) {
+        System.out.println("Error: " + e.getMessage());
     }
+    // ----------------------------------------------
 
-    // 5. SQL Insert: Kung pasado sa tanang validation, i-save na sa database
-    String sql = "INSERT INTO tbl_user (fullname, email, password, role) VALUES (?, ?, ?, ?)";
-
-    con.addRecord(sql, name, email, pass, role);
+    // SQL Insert: Magpadayon ra kung wala pay duplicate
+    String sql = "INSERT INTO tbl_user (fullname, email, password, role, status) VALUES (?, ?, ?, ?, 'Pending')";
+    con.addRecord(sql, name, email, pass, "Student");
     
-    javax.swing.JOptionPane.showMessageDialog(null, "Successfully Registered!");
+    javax.swing.JOptionPane.showMessageDialog(null, "Successfully Registered! Please wait for Admin approval.");
     
-    // Balik sa login screen
     login loginScreen = new login();
     loginScreen.setVisible(true);
     this.dispose();
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -251,11 +252,9 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
-    private javax.swing.JTextField txtRole;
     // End of variables declaration//GEN-END:variables
 }

@@ -102,7 +102,7 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 80, -1));
+        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, -1));
 
         btnApprove.setBackground(new java.awt.Color(153, 153, 255));
         btnApprove.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -122,8 +122,9 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 80, -1));
+        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 90, -1));
 
+        jLabel2.setBackground(new java.awt.Color(0, 51, 51));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ManageSub");
@@ -132,9 +133,9 @@ public class ReportFrame extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 130, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 830, 420));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 810, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +145,7 @@ public class ReportFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         pack();

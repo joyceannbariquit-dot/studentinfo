@@ -48,7 +48,7 @@ public class EditProfile extends javax.swing.JFrame {
         txtFullname = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        btnUpdate = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,14 +98,14 @@ public class EditProfile extends javax.swing.JFrame {
         });
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 200, 30));
 
-        btnUpdate.setBackground(new java.awt.Color(153, 153, 255));
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 110, -1));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,45 +147,52 @@ public class EditProfile extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBrowseActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-   String name = txtFullname.getText().trim();
-    String pass = new String(txtPassword.getPassword()).trim();
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+String name = txtFullname.getText().trim();
+    String pass = new String(txtPassword.getPassword());
     String email = txtEmail.getText().trim();
 
-    // Validation (pabilin lang ni)
-    if (name.isEmpty() || pass.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Palihug puy-i ang tanan fields.");
+    // 1. Validation: Siguroha nga dili blangko ang name ug email
+    if (name.isEmpty() || email.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Name and Email are required!");
         return;
     }
 
     try {
+        // 2. Connect sa Database
         java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+        
+        // 3. SQL Update: I-update ang fullname, password, ug profile_pic base sa email
         String sql = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
         java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        
         pstmt.setString(1, name);
         pstmt.setString(2, pass);
-        pstmt.setString(3, selectedImagePath); 
-        pstmt.setString(4, email); 
+        pstmt.setString(3, selectedImagePath); // Gikan sa napili nga path sa btnBrowse
+        pstmt.setString(4, userEmail); // Ang original email sa user
 
-        int result = pstmt.executeUpdate();
-        if (result > 0) {
-            // 1. I-pakita ang Success Message
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully!");
+        int rows = pstmt.executeUpdate();
+        
+        if (rows > 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Profile Updated Successfully!");
 
-            // 2. Human i-click ang OK, ablihan ang Admin_dashboard
-            // Gigamit nato ang 'email' variable para ma-load sa dashboard ang saktong user
+            // MABALIK SA ADMIN DASHBOARD:
+            // I-pass nato ang email aron ang dashboard makahibalo kinsa ang naka-login
             Admin_dashboard ad = new Admin_dashboard(email); 
             ad.setVisible(true);
-
-            // 3. Isira ang EditProfile window
+            
+            // Isira ang EditProfile frame
             this.dispose(); 
         }
+
+        pstmt.close();
         conn.close();
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Database Error: " + e.getMessage());
+        
+    } catch (java.sql.SQLException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Update Error: " + e.getMessage());
     }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,7 +235,7 @@ public class EditProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBrowse;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
