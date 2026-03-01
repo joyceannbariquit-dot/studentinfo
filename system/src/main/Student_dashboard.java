@@ -214,7 +214,7 @@ public class Student_dashboard extends javax.swing.JFrame {
         jPanel1.add(lblEditProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 90));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 90));
 
         btnSubmit.setBackground(new java.awt.Color(153, 153, 255));
         btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

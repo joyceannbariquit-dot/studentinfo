@@ -149,64 +149,42 @@ public class EditProfile extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
- String name = txtFullname.getText().trim();
-    String pass = new String(txtPassword.getPassword());
+   String name = txtFullname.getText().trim();
+    String pass = new String(txtPassword.getPassword()).trim();
     String email = txtEmail.getText().trim();
 
-    // 1. Validation: Siguroha nga dili blangko
-    if (name.isEmpty() || email.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Name and Email are required!");
+    // Validation (pabilin lang ni)
+    if (name.isEmpty() || pass.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please fill the fields.");
         return;
     }
 
     try {
-        // 2. Connect sa Database
         java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-        
-        // 3. I-update ang Profile
-        String sqlUpdate = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
-        java.sql.PreparedStatement pstmt = conn.prepareStatement(sqlUpdate);
+        String sql = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, name);
         pstmt.setString(2, pass);
         pstmt.setString(3, selectedImagePath); 
-        pstmt.setString(4, userEmail); 
-        int rows = pstmt.executeUpdate();
-        
-        if (rows > 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile Updated Successfully!");
+        pstmt.setString(4, email); 
 
-            // 4. KINI ANG SOLUSYON: Susiha ang role aron mahibal-an kung asa mobalik
-            java.sql.PreparedStatement pstmtRole = conn.prepareStatement("SELECT role FROM tbl_user WHERE email = ?");
-            pstmtRole.setString(1, userEmail);
-            java.sql.ResultSet rs = pstmtRole.executeQuery();
+        int result = pstmt.executeUpdate();
+        if (result > 0) {
+            // 1. I-pakita ang Success Message
+            javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully!");
 
-            if (rs.next()) {
-                String role = rs.getString("role");
+            // 2. Human i-click ang OK, ablihan ang Admin_dashboard
+            // Gigamit nato ang 'email' variable para ma-load sa dashboard ang saktong user
+            Admin_dashboard ad = new Admin_dashboard(email); 
+            ad.setVisible(true);
 
-                if (role.equalsIgnoreCase("Admin")) {
-                    // Mobalik sa Admin Dashboard
-                    Admin_dashboard ad = new Admin_dashboard(email);
-                    ad.setVisible(true);
-                } else {
-                    // Mobalik sa Student Dashboard
-                    new Student_dashboard(email).setVisible(true);
-                }
-                
-                // Isira ang EditProfile frame
-                this.dispose(); 
-            }
-            rs.close();
-            pstmtRole.close();
+            // 3. Isira ang EditProfile window
+            this.dispose(); 
         }
-
-        pstmt.close();
         conn.close();
-        
-    } catch (java.sql.SQLException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Update Error: " + e.getMessage());
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Database Error: " + e.getMessage());
     }
-
-
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**

@@ -65,6 +65,7 @@ public class createUser extends javax.swing.JFrame {
         jPanel1.add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, 210, 30));
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 210, 30));
 
+        btnSave.setBackground(new java.awt.Color(153, 153, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setText("SAVE");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +75,7 @@ public class createUser extends javax.swing.JFrame {
         });
         jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
 
+        btnBack.setBackground(new java.awt.Color(153, 153, 255));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
