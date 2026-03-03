@@ -392,7 +392,7 @@ public class Student_dashboard extends javax.swing.JFrame {
 
     // 2. Validation: Siguraduhon nga dili empty ang importante nga fields
     if(section.trim().isEmpty() || subject.trim().isEmpty() || grade.equals("GRADE & LEVEL")){
-        javax.swing.JOptionPane.showMessageDialog(this, "Palihog pun-i ang tanang fields (Section, Subject, Grade)!");
+        javax.swing.JOptionPane.showMessageDialog(this, "Please fill the fields (Section, Subject, Grade)!");
         return;
     }
 
