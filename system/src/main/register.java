@@ -65,36 +65,60 @@ public class register extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel4.setText("Full Name:");
+<<<<<<< HEAD
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, 20));
+=======
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, 20));
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
 
         txtFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFullNameActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(txtFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel5.setText("Email:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
+=======
+        jPanel1.add(txtFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 230, 30));
+
+        jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
+        jLabel5.setText("Email:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, -1, -1));
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 230, 30));
 
         jLabel6.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel6.setText("Password:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, -1, 30));
+=======
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 230, 30));
+
+        jLabel6.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
+        jLabel6.setText("Password:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, -1, 30));
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
 
         btnPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPasswordActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 230, 30));
+=======
+        jPanel1.add(btnPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 230, 30));
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
 
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
         jButton1.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
@@ -104,7 +128,11 @@ public class register extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 70, 30));
+=======
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, 70, 30));
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
 
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -119,11 +147,17 @@ public class register extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 350, 70, 30));
 
         jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\USER16\\Downloads\\Baiquit\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+=======
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 360, 70, 30));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\reyma\\Documents\\studentinfo\\system\\src\\image\\lgo.jfif")); // NOI18N
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
         jLabel10.setText("jLabel10");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 450, 470));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 450, 490));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 480));
 
@@ -144,32 +178,57 @@ public class register extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFullNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+<<<<<<< HEAD
                                        
   config con = new config();
 
+=======
+      
+  // 1. Gamita ang 'config' diretso tungod sa imong import sa taas
+    config con = new config();
+
+    // 2. Kuhaa ang data gikan sa text fields
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
     String name = txtFullName.getText().trim();
     String email = txtEmail.getText().trim();
     String pass = new String(btnPassword.getPassword());
 
+<<<<<<< HEAD
+=======
+    // 3. Validation: Siguroha nga dili blangko
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
     if (name.isEmpty() || email.isEmpty() || pass.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please fill up all fields!");
         return;
     }
 
+<<<<<<< HEAD
+=======
+    // 4. Email Format Validation
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
     if (!email.toLowerCase().endsWith("@gmail.com")) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Invalid Email!");
+        javax.swing.JOptionPane.showMessageDialog(this, "Invalid Email! Use @gmail.com only.");
         return;
     }
 
+<<<<<<< HEAD
     // --- KINI ANG DUGANG PARA DILI MA-DUPLICATE ---
     try {
         java.sql.Connection conn = config.connectDB();
         String checkEmail = "SELECT email FROM tbl_user WHERE email = ?";
         java.sql.PreparedStatement pstmt = conn.prepareStatement(checkEmail);
+=======
+    // 5. CHECK PARA SA DUPLICATE EMAIL
+    try {
+        java.sql.Connection conn = config.connectDB(); // Naggamit sa static connection
+        String checkSql = "SELECT email FROM tbl_user WHERE email = ?";
+        java.sql.PreparedStatement pstmt = conn.prepareStatement(checkSql);
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
         pstmt.setString(1, email);
         java.sql.ResultSet rs = pstmt.executeQuery();
 
         if (rs.next()) {
+<<<<<<< HEAD
             // Kung naay nakita nga email, stop ang registration
             javax.swing.JOptionPane.showMessageDialog(this, "Email is already registered! Use another one.");
             rs.close();
@@ -178,25 +237,53 @@ public class register extends javax.swing.JFrame {
             return; 
         }
         
+=======
+            javax.swing.JOptionPane.showMessageDialog(this, "Email is already registered! Please use another one.");
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return; // I-stop ang process kung naay duplicate
+        }
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
         rs.close();
         pstmt.close();
         conn.close();
     } catch (java.sql.SQLException e) {
+<<<<<<< HEAD
         System.out.println("Error: " + e.getMessage());
+=======
+        System.out.println("Error checking email: " + e.getMessage());
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
     }
     // ----------------------------------------------
 
+<<<<<<< HEAD
     // SQL Insert: Magpadayon ra kung wala pay duplicate
     String sql = "INSERT INTO tbl_user (fullname, email, password, role, status) VALUES (?, ?, ?, ?, 'Pending')";
     con.addRecord(sql, name, email, pass, "Student");
     
     javax.swing.JOptionPane.showMessageDialog(null, "Successfully Registered! Please wait for Admin approval.");
     
+=======
+    // 6. SQL INSERT: Naggamit og 'Pending' as default status
+    // 4 ra ka '?' ang gamiton para compatible sa imong 'addRecord' method
+    String sql = "INSERT INTO tbl_user (fullname, email, password, role, status) VALUES (?, ?, ?, ?, 'Pending')";
+
+    // 7. Pag-save (Default role kay 'Student', usbon ra nimo sa DB)
+    con.addRecord(sql, name, email, pass, "Student");
+    
+    javax.swing.JOptionPane.showMessageDialog(null, "Successfully Registered! Status is PENDING. Please wait for Admin approval.");
+    
+    // 8. Balik sa login screen
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
     login loginScreen = new login();
     loginScreen.setVisible(true);
     this.dispose();
 
+<<<<<<< HEAD
         // TODO add your handling code here:
+=======
+>>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -335,6 +335,6 @@ Admin_dashboard dash = new Admin_dashboard(this.adminEmail);
     // End of variables declaration//GEN-END:variables
 
     private void displayTransactions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 }
