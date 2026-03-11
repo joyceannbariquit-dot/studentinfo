@@ -83,13 +83,12 @@ public class ReportFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-<<<<<<< HEAD
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 770, 230));
         jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 250, 30));
-=======
+
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 800, 310));
         jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 250, 30));
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
+
 
         btnSearch.setBackground(new java.awt.Color(153, 153, 255));
         btnSearch.setText("search");
@@ -98,11 +97,11 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 80, 30));
-=======
+
         jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 80, 30));
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
+
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -112,11 +111,11 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 90, -1));
-=======
+
         jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 80, 30));
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
+
 
         btnApprove.setBackground(new java.awt.Color(153, 153, 255));
         btnApprove.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -126,11 +125,10 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnApproveActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
+
         jPanel2.add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
-=======
+
         jPanel2.add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, 30));
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
 
         btnBack.setBackground(new java.awt.Color(153, 153, 255));
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -140,11 +138,10 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
         jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 90, -1));
-=======
+
         jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 80, 30));
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
+
 
         jLabel2.setBackground(new java.awt.Color(153, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -155,11 +152,10 @@ public class ReportFrame extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
-<<<<<<< HEAD
+
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, 40));
-=======
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, 70));
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
+
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 810, 400));
 

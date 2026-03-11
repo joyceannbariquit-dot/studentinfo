@@ -5,6 +5,13 @@
  */
 package main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Joyce Ann
@@ -12,6 +19,7 @@ package main;
 public class EditProfile extends javax.swing.JFrame {
     private String userEmail;
     private String selectedImagePath = "";
+    private String fullname;
 
     /**
      * Creates new form EditProfile
@@ -147,104 +155,59 @@ public class EditProfile extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBrowseActionPerformed
 
-<<<<<<< HEAD
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-String name = txtFullname.getText().trim();
-    String pass = new String(txtPassword.getPassword());
-    String email = txtEmail.getText().trim();
+       String newFullname = txtFullname.getText().trim();
+    String newPassword = new String(txtPassword.getPassword());
+    String email = txtEmail.getText().trim(); // Mao ni ang reference
 
-    // 1. Validation: Siguroha nga dili blangko ang name ug email
-=======
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
- String name = txtFullname.getText().trim();
-    String pass = new String(txtPassword.getPassword());
-    String email = txtEmail.getText().trim();
-
-    // 1. Validation: Siguroha nga dili blangko
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
-    if (name.isEmpty() || email.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Name and Email are required!");
+    if (newFullname.isEmpty() || newPassword.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Palihug pun-i ang tanang field!");
         return;
     }
 
     try {
-        // 2. Connect sa Database
-        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
-        
-<<<<<<< HEAD
-        // 3. SQL Update: I-update ang fullname, password, ug profile_pic base sa email
+        // Connect sa database
+        Connection conn = DriverManager.getConnection("jdbc:sqlite:info.db");
+        // SQL query para update fullname, password, ug image path
         String sql = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
-        java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
+        PreparedStatement pstmt = conn.prepareStatement(sql);
         
-        pstmt.setString(1, name);
-        pstmt.setString(2, pass);
-        pstmt.setString(3, selectedImagePath); // Gikan sa napili nga path sa btnBrowse
-        pstmt.setString(4, userEmail); // Ang original email sa user
-
-        int rows = pstmt.executeUpdate();
+        pstmt.setString(1, newFullname);
+        pstmt.setString(2, newPassword);
+        pstmt.setString(3, selectedImagePath);
+        pstmt.setString(4, email);
         
-        if (rows > 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile Updated Successfully!");
-
-            // MABALIK SA ADMIN DASHBOARD:
-            // I-pass nato ang email aron ang dashboard makahibalo kinsa ang naka-login
-            Admin_dashboard ad = new Admin_dashboard(email); 
-            ad.setVisible(true);
+        pstmt.executeUpdate();
+        
+        JOptionPane.showMessageDialog(this, "Profile updated successfully!");
+        
+        // --- LOGIC PARA SA REDIRECTION ---
+        // Kuhaon ang role sa user gikan sa database
+        String roleQuery = "SELECT role FROM tbl_user WHERE email = ?";
+        PreparedStatement rolePstmt = conn.prepareStatement(roleQuery);
+        rolePstmt.setString(1, email);
+        ResultSet rs = rolePstmt.executeQuery();
+        
+        if (rs.next()) {
+            String role = rs.getString("role");
             
-            // Isira ang EditProfile frame
-            this.dispose(); 
-=======
-        // 3. I-update ang Profile
-        String sqlUpdate = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
-        java.sql.PreparedStatement pstmt = conn.prepareStatement(sqlUpdate);
-        pstmt.setString(1, name);
-        pstmt.setString(2, pass);
-        pstmt.setString(3, selectedImagePath); 
-        pstmt.setString(4, userEmail); 
-        int rows = pstmt.executeUpdate();
-        
-        if (rows > 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile Updated Successfully!");
-
-            // 4. KINI ANG SOLUSYON: Susiha ang role aron mahibal-an kung asa mobalik
-            java.sql.PreparedStatement pstmtRole = conn.prepareStatement("SELECT role FROM tbl_user WHERE email = ?");
-            pstmtRole.setString(1, userEmail);
-            java.sql.ResultSet rs = pstmtRole.executeQuery();
-
-            if (rs.next()) {
-                String role = rs.getString("role");
-
-                if (role.equalsIgnoreCase("Admin")) {
-                    // Mobalik sa Admin Dashboard
-                    Admin_dashboard ad = new Admin_dashboard(email);
-                    ad.setVisible(true);
-                } else {
-                    // Mobalik sa Student Dashboard
-                    new Student_dashboard(email).setVisible(true);
-                }
-                
-                // Isira ang EditProfile frame
-                this.dispose(); 
+            if ("Admin".equalsIgnoreCase(role)) {
+                new Admin_dashboard(email).setVisible(true);
+            } else {
+                new Student_dashboard(email).setVisible(true);
             }
-            rs.close();
-            pstmtRole.close();
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
+            this.dispose(); // Isira ang EditProfile
         }
-
-        pstmt.close();
-        conn.close();
         
-    } catch (java.sql.SQLException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Update Error: " + e.getMessage());
+        conn.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error updating profile: " + e.getMessage());
     }
-
-<<<<<<< HEAD
     }//GEN-LAST:event_btnSaveActionPerformed
-=======
 
-    }//GEN-LAST:event_btnUpdateActionPerformed
->>>>>>> 272aa4c3becfc8928fb99f31a6aae808ab49f8f3
+
+ 
+    
 
     /**
      * @param args the command line arguments
