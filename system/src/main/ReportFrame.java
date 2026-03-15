@@ -62,9 +62,10 @@ public class ReportFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("REPORTS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 180, -1));
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -82,8 +83,12 @@ public class ReportFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 770, 230));
+        jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 250, 30));
+
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 800, 310));
         jPanel2.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 250, 30));
+
 
         btnSearch.setBackground(new java.awt.Color(153, 153, 255));
         btnSearch.setText("search");
@@ -92,7 +97,11 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
+
+        jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 80, 30));
+
         jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 80, 30));
+
 
         btnDelete.setBackground(new java.awt.Color(153, 153, 255));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -102,7 +111,11 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
+
+        jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 90, -1));
+
         jPanel2.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 80, 30));
+
 
         btnApprove.setBackground(new java.awt.Color(153, 153, 255));
         btnApprove.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -112,6 +125,9 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnApproveActionPerformed(evt);
             }
         });
+
+        jPanel2.add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
+
         jPanel2.add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, 30));
 
         btnBack.setBackground(new java.awt.Color(153, 153, 255));
@@ -122,19 +138,26 @@ public class ReportFrame extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+        jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 90, -1));
+
         jPanel2.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 80, 30));
 
+
+        jLabel2.setBackground(new java.awt.Color(153, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ManageSub");
+        jLabel2.setText("MANAGESUBJECT");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
+
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, 40));
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 110, 70));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 830, 420));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 810, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +167,9 @@ public class ReportFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         pack();

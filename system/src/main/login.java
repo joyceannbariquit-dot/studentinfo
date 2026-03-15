@@ -140,7 +140,7 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                                     
-    String email = txtEmail.getText().trim();
+   String email = txtEmail.getText().trim();
     String password = new String(btnPassword.getPassword());
 
     if (email.isEmpty() || password.isEmpty()) {
@@ -150,10 +150,11 @@ public class login extends javax.swing.JFrame {
 
     config.config con = new config.config();
     
+    // 1. I-authenticate ang user (check email & password)
     if (con.authenticate(email, password)) {
         try {
             java.sql.Connection conn = config.config.connectDB();
-            // GI-AYO: Gidugangan og 'status' ang query para makuha ang Active/Pending
+            // 2. Kuhaon ang role ug status
             java.sql.PreparedStatement pstmt = conn.prepareStatement("SELECT role, status FROM tbl_user WHERE email = ?");
             pstmt.setString(1, email);
             java.sql.ResultSet rs = pstmt.executeQuery();
@@ -162,22 +163,19 @@ public class login extends javax.swing.JFrame {
                 String role = rs.getString("role");
                 String status = rs.getString("status");
 
-                // GI-AYO: (status is Active) OR (role is Admin)
-                // Kini nagpasabot nga basta Admin ang role, pasuldon bisag unsa pay status sa database
-                if (status.equalsIgnoreCase("Active") || role.equalsIgnoreCase("Admin")) {
+                // 3. LOGIC: Kinahanglan "Active" gyud, maski Admin pa na siya
+                if (status.equalsIgnoreCase("Active")) {
                     if (role.equalsIgnoreCase("Admin")) {
                         Admin_dashboard ad = new Admin_dashboard(email); 
                         ad.setVisible(true);
                         this.dispose();
                     } else if (role.equalsIgnoreCase("Student")) {
-                        // Mao ni ang mo-abli sa imong bag-ong Student_dashboard
                         new Student_dashboard(email).setVisible(true); 
                         this.dispose();
                     }
-                
                 } else {
-                    // Kini ra ang para sa Student nga Pending
-                    javax.swing.JOptionPane.showMessageDialog(this, "Your account is still PENDING. Please wait for Admin approval.");
+                    // Kung Pending o dili Active, dili pasudlon
+                    javax.swing.JOptionPane.showMessageDialog(this, "Your account status is: " + status.toUpperCase() + ". Please wait for Admin approval.");
                 }
             }
             

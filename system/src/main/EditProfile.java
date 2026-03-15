@@ -5,6 +5,13 @@
  */
 package main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Joyce Ann
@@ -12,6 +19,7 @@ package main;
 public class EditProfile extends javax.swing.JFrame {
     private String userEmail;
     private String selectedImagePath = "";
+    private String fullname;
 
     /**
      * Creates new form EditProfile
@@ -48,7 +56,7 @@ public class EditProfile extends javax.swing.JFrame {
         txtFullname = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        btnUpdate = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,14 +106,14 @@ public class EditProfile extends javax.swing.JFrame {
         });
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 200, 30));
 
-        btnUpdate.setBackground(new java.awt.Color(153, 153, 255));
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setBackground(new java.awt.Color(153, 153, 255));
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 110, -1));
+        jPanel1.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,67 +155,59 @@ public class EditProfile extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBrowseActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
- String name = txtFullname.getText().trim();
-    String pass = new String(txtPassword.getPassword());
-    String email = txtEmail.getText().trim();
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+       String newFullname = txtFullname.getText().trim();
+    String newPassword = new String(txtPassword.getPassword());
+    String email = txtEmail.getText().trim(); // Mao ni ang reference
 
-    // 1. Validation: Siguroha nga dili blangko
-    if (name.isEmpty() || email.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Name and Email are required!");
+    if (newFullname.isEmpty() || newPassword.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Palihug pun-i ang tanang field!");
         return;
     }
 
     try {
-        // 2. Connect sa Database
-        java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:info.db");
+        // Connect sa database
+        Connection conn = DriverManager.getConnection("jdbc:sqlite:info.db");
+        // SQL query para update fullname, password, ug image path
+        String sql = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
         
-        // 3. I-update ang Profile
-        String sqlUpdate = "UPDATE tbl_user SET fullname = ?, password = ?, profile_pic = ? WHERE email = ?";
-        java.sql.PreparedStatement pstmt = conn.prepareStatement(sqlUpdate);
-        pstmt.setString(1, name);
-        pstmt.setString(2, pass);
-        pstmt.setString(3, selectedImagePath); 
-        pstmt.setString(4, userEmail); 
-        int rows = pstmt.executeUpdate();
+        pstmt.setString(1, newFullname);
+        pstmt.setString(2, newPassword);
+        pstmt.setString(3, selectedImagePath);
+        pstmt.setString(4, email);
         
-        if (rows > 0) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Profile Updated Successfully!");
-
-            // 4. KINI ANG SOLUSYON: Susiha ang role aron mahibal-an kung asa mobalik
-            java.sql.PreparedStatement pstmtRole = conn.prepareStatement("SELECT role FROM tbl_user WHERE email = ?");
-            pstmtRole.setString(1, userEmail);
-            java.sql.ResultSet rs = pstmtRole.executeQuery();
-
-            if (rs.next()) {
-                String role = rs.getString("role");
-
-                if (role.equalsIgnoreCase("Admin")) {
-                    // Mobalik sa Admin Dashboard
-                    Admin_dashboard ad = new Admin_dashboard(email);
-                    ad.setVisible(true);
-                } else {
-                    // Mobalik sa Student Dashboard
-                    new Student_dashboard(email).setVisible(true);
-                }
-                
-                // Isira ang EditProfile frame
-                this.dispose(); 
+        pstmt.executeUpdate();
+        
+        JOptionPane.showMessageDialog(this, "Profile updated successfully!");
+        
+        // --- LOGIC PARA SA REDIRECTION ---
+        // Kuhaon ang role sa user gikan sa database
+        String roleQuery = "SELECT role FROM tbl_user WHERE email = ?";
+        PreparedStatement rolePstmt = conn.prepareStatement(roleQuery);
+        rolePstmt.setString(1, email);
+        ResultSet rs = rolePstmt.executeQuery();
+        
+        if (rs.next()) {
+            String role = rs.getString("role");
+            
+            if ("Admin".equalsIgnoreCase(role)) {
+                new Admin_dashboard(email).setVisible(true);
+            } else {
+                new Student_dashboard(email).setVisible(true);
             }
-            rs.close();
-            pstmtRole.close();
+            this.dispose(); // Isira ang EditProfile
         }
-
-        pstmt.close();
-        conn.close();
         
-    } catch (java.sql.SQLException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Update Error: " + e.getMessage());
+        conn.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error updating profile: " + e.getMessage());
     }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
-    }//GEN-LAST:event_btnUpdateActionPerformed
+ 
+    
 
     /**
      * @param args the command line arguments
@@ -250,7 +250,7 @@ public class EditProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBrowse;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
